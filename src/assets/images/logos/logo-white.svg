@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="683.97" height="110.37" viewBox="0 0 683.97 110.37">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" y1="-2.475" x2="1" y2="-2.475" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0e1860"/>
+      <stop offset="0.39" stop-color="#ea5400"/>
+      <stop offset="1" stop-color="blue"/>
+    </linearGradient>
+  </defs>
+  <g id="Camada_1" data-name="Camada 1" transform="translate(-149.4 -116.16)">
+    <g id="MD1">
+      <g id="logo-white">
+        <g id="Camada_1-2" data-name="Camada 1-2">
+          <g id="G2">
+            <g id="Logo">
+              <g id="Grupo_3" data-name="Grupo 3">
+                <path id="Caminho_10" data-name="Caminho 10" class="cls-1" d="M149.4,171.62c0-32.25,24.75-54.89,58.5-54.89,20.55,0,36.75,7.5,47.1,21l-22.35,19.95c-6.15-7.8-13.5-12.3-22.95-12.3-14.7,0-24.6,10.2-24.6,26.25s9.9,26.25,24.6,26.25c9.45,0,16.8-4.5,22.95-12.3L255,205.53c-10.35,13.5-26.55,21-47.1,21-33.75-.01-58.5-22.66-58.5-54.91Z"/>
+                <path id="Caminho_11" data-name="Caminho 11" class="cls-1" d="M352.49,197.42v26.7h-87.3V119.13h85.35v26.7H299.99v12.3h44.4v25.5h-44.4v13.8h52.5Z"/>
+                <path id="Caminho_12" data-name="Caminho 12" class="cls-1" d="M366.15,119.13h35.4v77.55h47.4v27.45h-82.8v-105h0Z"/>
+                <path id="Caminho_13" data-name="Caminho 13" class="cls-1" d="M458.69,119.13h35.4v77.55h47.4v27.45h-82.8v-105h0Z"/>
+              </g>
+              <g id="Grupo_4" data-name="Grupo 4">
+                <path id="Caminho_14" data-name="Caminho 14" class="cls-1" d="M563.97,150.27c0-19.95,15.39-34.1,36.94-34.1,13.91,0,24.87,6.03,29.67,16.87l-14.9,8c-3.57-6.28-8.86-9.11-14.9-9.11-9.73,0-17.36,6.77-17.36,18.35s7.63,18.34,17.36,18.34c6.03,0,11.33-2.71,14.9-9.11l14.9,8.13c-4.8,10.59-15.76,16.74-29.67,16.74-21.55,0-36.94-14.16-36.94-34.1h0Z"/>
+                <path id="Caminho_15" data-name="Caminho 15" class="cls-1" d="M635.88,150.27c0-19.95,15.39-34.1,36.44-34.1s36.32,14.16,36.32,34.1-15.27,34.1-36.32,34.1-36.44-14.16-36.44-34.1h0Zm53.31,0c0-11.45-7.26-18.35-16.87-18.35s-16.99,6.89-16.99,18.35,7.39,18.34,16.99,18.34S689.19,161.72,689.19,150.27Z"/>
+                <path id="Caminho_16" data-name="Caminho 16" class="cls-1" d="M833.37,145.47v37.92H814.16V148.42c0-10.71-4.8-15.64-12.56-15.64-8.62,0-14.65,5.54-14.65,17.36v33.24H767.74V148.41c0-10.71-4.56-15.64-12.56-15.64-8.5,0-14.53,5.54-14.53,17.36v33.24H721.44V117.15h18.34v7.63c4.93-5.66,12.31-8.62,20.81-8.62,9.23,0,17.11,3.57,21.79,10.83,5.29-6.77,13.91-10.83,23.89-10.83,15.76,0,27.09,9.11,27.09,29.3h.01Z"/>
+              </g>
+              <path id="Caminho_17" data-name="Caminho 17" class="cls-2" d="M819.59,196.57H576.55a13.77,13.77,0,0,1,0,27.54H819.59a13.77,13.77,0,0,0,13.77-13.77h0A13.77,13.77,0,0,0,819.59,196.57Z"/>
+              <ellipse id="Elipse_1" data-name="Elipse 1" class="cls-1" cx="13.7" cy="13.77" rx="13.7" ry="13.77" transform="translate(562.82 196.58)"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

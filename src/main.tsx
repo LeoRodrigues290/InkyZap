@@ -1,19 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import router from './routes/router';
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import { theme } from './theme/theme';
+import { Suspense } from 'react'
+import { createRoot } from 'react-dom/client'
+import './css/globals.css'
+import App from './App.tsx'
+import Spinner from './views/spinner/Spinner.tsx'
 
-ReactDOM
-    .createRoot(document.getElementById('root')!)
-    .render(
-        <React.StrictMode>
-            <ThemeProvider theme={theme}>
-                {/* normalize e estilos base do MUI */}
-                <CssBaseline />
-                {/* toda a árvore de rotas */}
-                <RouterProvider router={router} />
-            </ThemeProvider>
-        </React.StrictMode>
-    );
+// auto-register do Service Worker gerado pelo VitePWA
+import { registerSW } from 'virtual:pwa-register'
+
+const updateSW = registerSW({
+    onRegistered(r) {
+        // opcional: console.log('SW registrado', r)
+    },
+    onNeedRefresh() {
+        // aqui você pode disparar um toast ou banner avisando que há nova versão
+    },
+    onOfflineReady() {
+        console.log('Aplicação pronta para uso offline')
+    }
+})
+
+createRoot(document.getElementById('root')!).render(
+    <Suspense fallback={<Spinner />}>
+        <App />
+    </Suspense>
+)

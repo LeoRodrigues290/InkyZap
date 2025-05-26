@@ -1,118 +1,53 @@
-/* eslint-disable react-refresh/only-export-components */
-import React, { Suspense, lazy } from 'react';
-import { createBrowserRouter, Outlet, Navigate } from 'react-router-dom';
+import { lazy } from 'react'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
+import Loadable from 'src/layouts/full/shared/loadable/Loadable'
+import { PrivateRoute } from 'src/firebase/PrivateRoute'
 
-import MainLayout from '../layouts/main-layout';
-import AuthLayout from '../layouts/auth-layout';
-import Splash    from '../components/loader/Splash';
-import PageLoader from '../components/loader/PageLoader';
-import { useAuth } from '../components/hooks/useAuth';
+// Layouts
+const FullLayout  = Loadable(lazy(() => import('src/layouts/full/FullLayout')))
+const BlankLayout = Loadable(lazy(() => import('src/layouts/blank/BlankLayout')))
 
-const Dashboard = lazy(() => import('../pages/dashboard'));
-const Signin   = lazy(() => import('../pages/authentication/Signin'));
-const Signup   = lazy(() => import('../pages/authentication/Signup'));
+// Dashboard
+const Dashboard  = Loadable(lazy(() => import('src/views/dashboards/Dashboard')))
 
-// Guard para admin (exemplo)
-function AdminGuard({ children }: { children: JSX.Element }) {
-  const { user, claims } = useAuth();
-  if (!user || !claims?.admin) {
-    // se não for admin, manda pra login de cliente
-    return <Navigate to="/auth/signin" replace />;
-  }
-  return children;
-}
+// Views
+const Produtos      = Loadable(lazy(() => import('src/views/produtos')))
+const Servicos      = Loadable(lazy(() => import('src/views/servicos')))
+const Pedidos       = Loadable(lazy(() => import('src/views/pedidos')))
+const Lembretes     = Loadable(lazy(() => import('src/views/lembretes')))
+const SearchResults = Loadable(lazy(() => import('src/views/search/SearchResults')))
 
-// Guard para cliente (exemplo)
-function ClientGuard({ children }: { children: JSX.Element }) {
-  const { user, claims } = useAuth();
-  if (!user || claims?.admin) {
-    // se for admin ou não logado, manda pra admin ou signin
-    return <Navigate to="/admin" replace />;
-  }
-  return children;
-}
+// Auth
+const Login      = Loadable(lazy(() => import('src/views/auth/login/Login')))
+const Error404   = Loadable(lazy(() => import('src/views/auth/error/Error')))
 
-const router = createBrowserRouter(
-    [
-      // rota base que carrega o App "slot"
-      {
-        element: (
-            <Suspense fallback={<Splash />}>
-              {/* aqui poderia ser um <App /> se você tiver um componente wrapper */}
-              <Outlet />
-            </Suspense>
-        ),
-        children: [
-          // === Área Admin (/admin/*) ===
-          {
-            path: '/admin',
-            element: (
-                <AdminGuard>
-                  <MainLayout />
-                </AdminGuard>
-            ),
-            children: [
-              {
-                index: true,
-                element: <Dashboard />,
-              },
-              // outras rotas de admin (ex: /admin/clientes, /admin/planos, etc.)
-            ],
-          },
-
-          // === Área de Autenticação (/auth/*) ===
-          {
-            path: '/auth',
-            element: (
-                <AuthLayout>
-                  <Outlet />
-                </AuthLayout>
-            ),
-            children: [
-              {
-                path: 'signin',
-                element: (
-                    <Suspense fallback={<PageLoader />}>
-                      <Signin />
-                    </Suspense>
-                ),
-              },
-              {
-                path: 'signup',
-                element: (
-                    <Suspense fallback={<PageLoader />}>
-                      <Signup />
-                    </Suspense>
-                ),
-              },
-            ],
-          },
-
-          // === Área Cliente (/app/*) ===
-          {
-            path: '/app',
-            element: (
-                <ClientGuard>
-                  <MainLayout />
-                </ClientGuard>
-            ),
-            children: [
-              {
-                index: true,
-                element: <Dashboard />,
-              },
-              // demais rotas de cliente (ex: /app/mensagens, /app/templates, etc.)
-            ],
-          },
-
-          // qualquer outra URL cai aqui
-          { path: '*', element: <Navigate to="/auth/signin" replace /> },
-        ],
-      },
+const routes = [
+  {
+    path: '/',
+    element: <FullLayout />,
+    children: [
+      { index: true, element: <PrivateRoute><Dashboard /></PrivateRoute> },
+      { path: 'produtos',     element: <PrivateRoute><Produtos/></PrivateRoute> },
+      { path: 'servicos',     element: <PrivateRoute><Servicos/></PrivateRoute> },
+      { path: 'pedidos',      element: <PrivateRoute><Pedidos/></PrivateRoute> },
+      { path: 'lembretes',    element: <PrivateRoute><Lembretes/></PrivateRoute> },
+      { path: 'search',       element: <PrivateRoute><SearchResults/></PrivateRoute> },
+      { path: '*',            element: <Navigate to="/auth/404" replace /> },
     ],
-    {
-      // basename padrão "/"
-    }
-);
+  },
+  {
+    path: '/',
+    element: <BlankLayout />,
+    children: [
+      { path: 'auth/login',    element: <Login/> },
+      { path: '404',           element: <Error404/> },
+      { path: '*',             element: <Navigate to="/auth/404" replace /> },
+    ],
+  },
+]
 
-export default router;
+const router = createBrowserRouter(routes, {
+  basename: import.meta.env.BASE_URL,
+})
+
+export default router
